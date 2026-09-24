@@ -1,0 +1,240 @@
+/* =========================================================
+   FixNow - style.css
+   ========================================================= */
+
+:root {
+  --fn-primary: #4f46e5;
+  --fn-primary-dark: #3730a3;
+  --fn-accent: #06b6d4;
+  --fn-bg: #f1f4fb;
+  --fn-surface: #ffffff;
+  --fn-text: #1e2233;
+  --fn-muted: #6b7280;
+  --fn-radius: 18px;
+  --fn-shadow: 0 10px 30px rgba(79, 70, 229, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--fn-bg);
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(79,70,229,0.08) 0, transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(6,182,212,0.08) 0, transparent 40%);
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--fn-text);
+  min-height: 100vh;
+}
+
+/* ---------- Navbar ---------- */
+.fn-navbar {
+  background: linear-gradient(120deg, var(--fn-primary-dark), var(--fn-primary) 55%, var(--fn-accent));
+  padding: 1.1rem 0;
+  box-shadow: 0 8px 24px rgba(55, 48, 163, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.fn-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.fn-brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  backdrop-filter: blur(4px);
+}
+
+.fn-tagline {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+}
+
+.fn-nav-btn {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fn-nav-btn:hover { transform: translateY(-2px); }
+
+/* ---------- Hero ---------- */
+.fn-hero {
+  background: linear-gradient(120deg, #eef2ff, #ecfeff);
+  border-radius: var(--fn-radius);
+  padding: 2rem 2.2rem;
+  border: 1px solid rgba(79,70,229,0.12);
+  margin-bottom: 2rem;
+}
+.fn-hero h4 { font-weight: 800; letter-spacing: -0.01em; }
+
+/* ---------- Cards ---------- */
+.fn-card {
+  background: var(--fn-surface);
+  border: none;
+  border-radius: var(--fn-radius);
+  box-shadow: var(--fn-shadow);
+}
+
+.fn-form-label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--fn-text);
+  margin-bottom: 0.35rem;
+}
+
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  padding: 0.65rem 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--fn-primary);
+  box-shadow: 0 0 0 4px rgba(79,70,229,0.12);
+}
+
+/* ---------- Buttons ---------- */
+.btn-fn-primary {
+  background: linear-gradient(120deg, var(--fn-primary), var(--fn-primary-dark));
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 18px rgba(79,70,229,0.28);
+}
+.btn-fn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(79,70,229,0.35);
+  color: #fff;
+}
+
+.btn-fn-outline {
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--fn-text);
+  background: #fff;
+  transition: all 0.15s ease;
+}
+.btn-fn-outline:hover {
+  border-color: var(--fn-primary);
+  color: var(--fn-primary);
+  background: #f5f4ff;
+}
+
+.btn-fn-danger-soft {
+  border: 1.5px solid #fecaca;
+  color: #dc2626;
+  border-radius: 12px;
+  font-weight: 600;
+  background: #fff5f5;
+  transition: all 0.15s ease;
+}
+.btn-fn-danger-soft:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---------- Stat cards (dashboard) ---------- */
+.fn-stat {
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+.fn-stat i { font-size: 1.6rem; opacity: 0.85; }
+.fn-stat .fn-stat-number { font-size: 1.9rem; font-weight: 800; line-height: 1; }
+.fn-stat .fn-stat-label { font-size: 0.82rem; opacity: 0.9; }
+
+.fn-stat-total    { background: linear-gradient(120deg, #4f46e5, #6366f1); }
+.fn-stat-menunggu { background: linear-gradient(120deg, #f59e0b, #f97316); }
+.fn-stat-diproses { background: linear-gradient(120deg, #0ea5e9, #06b6d4); }
+.fn-stat-selesai  { background: linear-gradient(120deg, #16a34a, #22c55e); }
+
+/* ---------- Table ---------- */
+.fn-table thead th {
+  border-bottom: 2px solid #eef0f6;
+  color: var(--fn-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+.fn-table tbody tr {
+  transition: background 0.15s ease;
+}
+.fn-table tbody tr:hover {
+  background: #f8f8ff;
+}
+.fn-table td { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+
+/* ---------- Badges ---------- */
+.badge-soft {
+  border-radius: 999px;
+  padding: 0.4em 0.85em;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.01em;
+}
+.badge-menunggu { background: #fef3c7; color: #92400e; }
+.badge-diproses { background: #dbeafe; color: #1d4ed8; }
+.badge-selesai  { background: #dcfce7; color: #166534; }
+
+.badge-tinggi { background: #fee2e2; color: #b91c1c; }
+.badge-sedang { background: #fef3c7; color: #92400e; }
+.badge-rendah { background: #f1f5f9; color: #475569; }
+
+/* ---------- Empty state ---------- */
+.fn-empty {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  color: var(--fn-muted);
+}
+.fn-empty i {
+  font-size: 3rem;
+  color: #c7d2fe;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+/* ---------- Result page icon ---------- */
+.fn-result-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  margin: 0 auto 1rem;
+}
+.fn-result-success { background: #dcfce7; color: #16a34a; }
+.fn-result-error { background: #fee2e2; color: #dc2626; }
+
+/* ---------- Footer ---------- */
+.fn-footer {
+  color: var(--fn-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 2rem 0;
+}
