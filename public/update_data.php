@@ -1,4 +1,6 @@
 <?php
+require 'auth.php';
+requireLogin();
 require 'firebase_config.php';
 
 $id = $_GET['id'];
@@ -40,11 +42,15 @@ $statusOptions    = ['Menunggu', 'Diproses', 'Selesai'];
 <body>
 
 <nav class="fn-navbar">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
         <a href="index.php" class="fn-brand">
             <span class="fn-brand-icon"><i class="bi bi-tools"></i></span>
             FixNow
         </a>
+        <div class="d-flex align-items-center gap-2">
+            <span class="fn-user d-none d-md-inline"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['email']) ?></span>
+            <a href="logout.php" class="btn btn-light fn-nav-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
     </div>
 </nav>
 

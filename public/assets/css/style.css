@@ -1,5 +1,6 @@
 /* =========================================================
    FixNow - style.css
+   Desain modern: gradient, glassmorphism ringan, animasi halus
    ========================================================= */
 
 :root {
@@ -237,4 +238,12 @@ body {
   font-size: 0.85rem;
   text-align: center;
   padding: 2rem 0;
+}
+
+/* ---------- User info di navbar (Sesi 9) ---------- */
+.fn-user {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 0.25rem;
 }

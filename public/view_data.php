@@ -1,4 +1,6 @@
 <?php
+require 'auth.php';
+requireLogin();
 require 'firebase_config.php';
 
 // Mengambil semua data laporan dari Firebase
@@ -63,9 +65,13 @@ function statusIcon($status) {
             <span class="fn-brand-icon"><i class="bi bi-tools"></i></span>
             FixNow
         </a>
-        <a href="index.php" class="btn btn-light fn-nav-btn">
+        <div class="d-flex align-items-center gap-2">
+            <span class="fn-user d-none d-md-inline"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['email']) ?></span>
+            <a href="index.php" class="btn btn-light fn-nav-btn">
             <i class="bi bi-plus-lg"></i> Laporan Baru
         </a>
+            <a href="logout.php" class="btn btn-light fn-nav-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
     </div>
 </nav>
 

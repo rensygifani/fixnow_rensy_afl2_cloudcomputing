@@ -1,3 +1,7 @@
+<?php
+require 'auth.php';
+requireLogin();
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,17 +22,21 @@
             <span class="fn-brand-icon"><i class="bi bi-tools"></i></span>
             FixNow
         </a>
-        <a href="view_data.php" class="btn btn-light fn-nav-btn">
+        <div class="d-flex align-items-center gap-2">
+            <span class="fn-user d-none d-md-inline"><i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['email']) ?></span>
+            <a href="view_data.php" class="btn btn-light fn-nav-btn">
             <i class="bi bi-list-check"></i> Lihat Laporan
         </a>
+            <a href="logout.php" class="btn btn-light fn-nav-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
     </div>
 </nav>
 
 <div class="container py-4">
     <div class="fn-hero">
         <span class="badge badge-soft badge-diproses mb-2"><i class="bi bi-lightning-charge-fill"></i> Pusat Pelaporan Fasilitas</span>
-        <h4>Temukan masalah fasilitas? Laporkan di sini.</h4>
-        <p class="text-muted mb-0">Isi form di bawah, laporan langsung masuk ke Firebase Realtime Database dengan status awal <b>Menunggu</b>.</p>
+        <h4>Temukan masalah fasilitas? Laporkan sekarang. 🛠️</h4>
+        <p class="text-muted mb-0">Isi form di bawah, laporan langsung tersimpan ke Firebase Realtime Database dengan status <b>Menunggu</b>.</p>
     </div>
 
     <div class="row justify-content-center">
