@@ -14,11 +14,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set document root ke public/
 WORKDIR /var/www/html
 COPY public/ /var/www/html/
-COPY src/ /var/www/html/../src/
 
 # Install dependensi PHP menggunakan Composer
 # vendor harus ada di /var/www supaya cocok dengan require '../vendor/autoload.php' di firebase_config.php
-RUN cd /var/www && composer require kreait/firebase-php
+COPY composer.json composer.lock /var/www/
+RUN cd /var/www && composer install --no-dev --no-interaction --optimize-autoloader
 
 # Pastikan index.php ditemukan sebagai halaman utama
 RUN echo "DirectoryIndex index.php" >> /etc/apache2/apache2.conf
