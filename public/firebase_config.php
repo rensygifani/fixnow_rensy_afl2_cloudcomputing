@@ -5,7 +5,7 @@ use Kreait\Firebase\Factory;
 
 // lokasi kredensial: di Render pakai Secret File, di lokal pakai folder src
 $credPath = '/etc/secrets/firebase_credentials.json';
-if (!file_exists($credPath)) {
+if (!is_readable($credPath)) {
     $credPath = __DIR__ . '/../src/firebase_credentials.json';
 }
 
