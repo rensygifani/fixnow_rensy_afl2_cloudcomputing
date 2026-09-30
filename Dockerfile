@@ -30,4 +30,4 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 EXPOSE 80
 
 # Start Apache ketika container berjalan
-CMD ["apache2-foreground"]
+CMD ["sh", "-c", "mkdir -p /var/www/src; cp /etc/secrets/firebase_credentials.json /var/www/src/firebase_credentials.json; chown www-data:www-data /var/www/src/firebase_credentials.json; chmod 600 /var/www/src/firebase_credentials.json; apache2-foreground"]
