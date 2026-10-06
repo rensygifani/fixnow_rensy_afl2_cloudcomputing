@@ -7,7 +7,7 @@ function isLoggedIn() {
     return !empty($_SESSION['uid']);
 }
 
-// buat halaman yang wajib login
+// membuat halaman yang wajib login
 function requireLogin() {
     if (!isLoggedIn()) {
         header('Location: login.php');
@@ -15,7 +15,7 @@ function requireLogin() {
     }
 }
 
-// kalau udah login, langsung ke beranda
+// kalau sudah login, langsung ke beranda
 function redirectIfLoggedIn() {
     if (isLoggedIn()) {
         header('Location: index.php');
@@ -23,7 +23,31 @@ function redirectIfLoggedIn() {
     }
 }
 
-// biar pesan error firebase gampang dibaca
+// alamat aplikasi, dipakai buat link di email verifikasi
+// kalau mau bisa diisi lewat env APP_URL di Render
+function appBaseUrl() {
+    $env = getenv('APP_URL');
+    if ($env) {
+        return rtrim($env, '/');
+    }
+    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+          || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    $scheme = $https ? 'https' : 'http';
+    $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $dir    = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
+    return $scheme . '://' . $host . $dir;
+}
+
+// kirim email verifikasi, link-nya mengarah ke verify.php
+function sendVerificationEmail($auth, $email) {
+    $settings = [
+        'continueUrl'     => appBaseUrl() . '/verify.php?email=' . urlencode($email),
+        'handleCodeInApp' => false,
+    ];
+    $auth->sendEmailVerificationLink($email, $settings);
+}
+
+// agar pesan error firebase gampang dibaca
 function authErrorMessage($e) {
     $msg = $e->getMessage();
     $map = [
