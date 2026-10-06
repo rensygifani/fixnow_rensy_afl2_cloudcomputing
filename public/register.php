@@ -19,7 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $auth->createUserWithEmailAndPassword($email, $password);
 
-            header('Location: login.php?registered=1');
+            // simpan data user, is_verified awalnya false
+            try {
+                $database->getReference('users/' . md5(strtolower($email)))->set([
+                    'email'       => $email,
+                    'is_verified' => false,
+                ]);
+            } catch (Exception $e) {
+                // kalau gagal simpan, registrasi tetap jalan
+            }
+
+            // dipakai untuk tombol kirim ulang di halaman login
+            $_SESSION['pending_verify_email'] = $email;
+
+            // kirim link verifikasi
+            try {
+                sendVerificationEmail($auth, $email);
+                header('Location: login.php?registered=1');
+            } catch (Exception $e) {
+                // email gagal terkirim, user bisa kirim ulang dari halaman login
+                header('Location: login.php?registered=1&mailfail=1');
+            }
             exit;
         } catch (Exception $e) {
             $error = authErrorMessage($e);
